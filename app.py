@@ -20,13 +20,13 @@ def datasets():
 def fetch_json():
     username = "Mary"
     password = "tiger"
-    return fetch_restapi_json(url + 'continents/0.1', username, password)
+    return fetch_restapi_json(url + 'ds/continents/0.1', username, password)
 
 @app.route('/continents-0.1.csv')
 def fetch_csv():
     username = "Mary"
     password = "tiger"
-    csv=fetch_restapi_csv(url + 'continents/0.1', username, password)
+    csv=fetch_restapi_csv(url + 'ds/continents/0.1', username, password)
     return Response(csv,mimetype="text/csv",headers={"Content-disposition":
                  "attachment; filename=continents-0.1.csv"})
 
