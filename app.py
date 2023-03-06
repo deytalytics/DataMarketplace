@@ -1,10 +1,9 @@
 from flask import Flask, Response,render_template
 from fetch_restapi_json import fetch_restapi_json
 from fetch_restapi_csv import fetch_restapi_csv
-prod_url = 'https://t-and-s-dp-poc.azurewebsites.net/'
 prod_tmp_url='https://data-container.azurewebsites.net/'
 dev_url = 'http://127.0.0.1:8000/'
-url = dev_url
+url = prod_tmp_url
 
 app = Flask(__name__)
 
