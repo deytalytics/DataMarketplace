@@ -4,13 +4,13 @@ from fetch_restapi_csv import fetch_restapi_csv
 prod_url = 'https://t-and-s-dp-poc.azurewebsites.net/'
 prod_tmp_url='https://data-container.azurewebsites.net/'
 dev_url = 'http://127.0.0.1:8000/'
-url = prod_tmp_url
+url = dev_url
 
 app = Flask(__name__)
 
 @app.route('/')
 def home_page():
-    return render_template('home_page.html')
+    return render_template('home_page.html',url=url)
 
 @app.route('/continents-0.1')
 def datasets():
