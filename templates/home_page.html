@@ -1,55 +1,12 @@
 {% extends "layout.html" %}
 {% block content %}
       <div class="row">
-        <br>
-        The data marketplace allows you to view and access data products.
+        <h2>Welcome to the Data Marketplace</h2>
+
+          <p>This site will allow you to search and get access to data products and datasets:-
+          <li> <a href="/permitted_data_products">Which you have already been permitted to access</a> </li>
+          <li> Which belong to business areas closely aligned with your business area. </li>
+          <li> That are available for the entire organisation </li>
       </div>
-      <div class="row">
-        <br>
-      </div>
-      <div class="row bg-light">
-        <div class="d-flex flex-row">
-            <div class="p-2">
-                <h5>Data Product PoC</h5>
-            </div>
-        </div>
-        <div class="d-flex flex-row">
-            <div class="p-2">
-              <small>
-                  <b>Data Product Owner:</b>&nbsp;<a href="mailto:james.dey@hotmail.com">James Dey</a>
-                  <br><b>Version:</b>&nbsp;0.1
-                  <br><b>Last updated date:</b>&nbsp;2023-03-02
-                  <br><b>Description:</b><br>
-                  This demo data product will serve up datasets that are relevant to the Acme Data Product Department
-              </small>
-            </div>
-        </div>
-        <div class="d-flex flex-row">
-            <div class="p-2">
-                <small>
-                    <b>Available Datasets:</b><br>
-                    <a href="/continents-0.1">Continents 0.1</a>
-                </small>
-            </div>
-        </div>
-        <div class="d-flex flex-row">
-            <div class="p-2">
-              <small>
-                  <table class="table table-bordered">
-                      <tr>
-                          <th>Data Source</th>
-                          <th>Data Sharing Agreement</th>
-                      </tr>
-                      <tr>
-                          <td>Databricks</td>
-                          <td><a href="{{ url }}static/docs/Databricks-Data_Product_PoC_DSA.docx">DSA with Databricks Platform Owner</a></td>
-                      </tr>
-                      <tr>
-                          <td>Kafka</td>
-                          <td><a href="{{ url }}static/docs/Kafka-Data_Product_PoC_DSA.docx">DSA with Kafka Platform Owner</a></td>
-                      </tr>
-                  </table>
-            </div>
-        </div>
     </div>
 {% endblock %}

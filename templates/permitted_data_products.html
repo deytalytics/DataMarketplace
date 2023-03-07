@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% block content %}
+      <div class="row">
+        <br>
+        The data marketplace allows you to view and access data products.
+      </div>
+      <div class="row">
+        <br>
+      </div>
+        {% for data_product in dp_metadata %}
+        <div class="row bg-light">
+            <div class="d-flex flex-row">
+                <div class="p-2">
+                    <h5>{{ data_product.name }}</h5>
+                </div>
+            </div>
+              <div class="d-flex flex-row">
+                <div class="p-2">
+                  <small>
+                      <b>Data Product Owner:</b>&nbsp;<a href="mailto:{{ data_product.contact_email }}">James Dey</a>
+                      <br><b>Version:</b> {{ data_product.version }}
+                      <br><b>Last updated date:</b>&nbsp;2023-03-02
+                      <br><b>Description:</b><br>
+                      {{ data_product.description }}
+                  </small>
+                </div>
+              </div>
+          {% endfor %}
+        <div class="d-flex flex-row">
+            <div class="p-2">
+                <small>
+                    <b>Available Datasets:</b><br>
+                    {% for dataset in ds_metadata %}
+
+                    <li><a href="/{{ dataset.name }}-{{ dataset.version }}">{{ dataset.name }}-{{ dataset.version }}</a></li>
+
+                    {% endfor %}
+                </small>
+            </div>
+        </div>
+        <div class="d-flex flex-row">
+            <div class="p-2">
+              <small>
+                  <table class="table table-bordered">
+                      <tr>
+                          <th>Data Source</th>
+                          <th>Data Sharing Agreement</th>
+                      </tr>
+                      <tr>
+                          <td>Databricks</td>
+                          <td><a href="{{ url }}static/docs/Databricks-Data_Product_PoC_DSA.docx">DSA with Databricks Platform Owner</a></td>
+                      </tr>
+                      <tr>
+                          <td>Kafka</td>
+                          <td><a href="{{ url }}static/docs/Kafka-Data_Product_PoC_DSA.docx">DSA with Kafka Platform Owner</a></td>
+                      </tr>
+                  </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
