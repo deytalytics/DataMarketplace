@@ -2,7 +2,7 @@
 {% block content %}
       <div class="row">
         <br>
-        The data marketplace allows you to view and access data products.
+        You have been permitted to access the data products and datasets listed below
       </div>
       <div class="row">
         <br>
@@ -32,7 +32,7 @@
                     <b>Available Datasets:</b><br>
                     {% for dataset in ds_metadata %}
 
-                    <li><a href="/{{ dataset.name }}-{{ dataset.version }}">{{ dataset.name }}-{{ dataset.version }}</a></li>
+                    <li><a href="/dataset?ds_id={{ dataset.ds_id }}&ds_version_id={{ dataset.id }}">{{ dataset.name }}-{{ dataset.version }}</a></li>
 
                     {% endfor %}
                 </small>

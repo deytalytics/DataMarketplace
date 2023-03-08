@@ -2,16 +2,14 @@
 {% block content %}
       <div class="d-flex flex-row">
         <div class="p-2">
-          <br><h1>Continents Dataset</h1>
+          <br><h1>Dataset - {{ dataset.name }} </h1>
         </div>
       </div>
       <div class="d-flex flex-row">
         <div class="p-2">
           <small>
-            <b>Version:</b>&nbsp;0.1<br>
-            <b>Description:</b><br>
-            The Continents dataset contains all of the continents of the world
-            <br><b>Last updated timestamp:</b>&nbsp;2023-03-02 14:00:01
+            <b>Version:</b>&nbsp; {{ dataset.version }}
+            <br><b>Last updated timestamp:</b>&nbsp;{{ dataset.last_modified_ts }}
           </small>
         </div>
       </div>
@@ -19,8 +17,8 @@
         <div class="p-2">
           <small>
             <b>Access Methods:</b>
-            <br><a href="/continents-0.1.csv">CSV File</a>
-            <br><a href="/continents-0.1.json">JSON</a>
+            <br><a href="/fetch_csv?name={{ dataset.name }}&version={{ dataset.version }}">CSV File</a>
+            <br><a href="/fetch_json?name={{ dataset.name }}&version={{ dataset.version }}">JSON</a>
             <br><a href="https://data-container.azurewebsites.net/docs">REST API endpoint</a>
             <br>SQL Query
           </small>
@@ -30,8 +28,8 @@
         <div class="p-2">
           <small>
             <b>Documentation:</b><br>
-            <a href="{{ url }}dictionary/continents/0.1?format=html">Data Dictionary</a>
-            <br><a href="{{ url }}static/images/continents-0.1.sql.jpg">Data Lineage Diagram</a>
+            <a href="{{ url }}dictionary/{{ dataset.name }}/{{ dataset.version }}?format=html">Data Dictionary</a>
+            <br><a href="{{ url }}static/images/{{ dataset.name }}-{{ dataset.version }}.sql.jpg">Data Lineage Diagram</a>
           </small>
         </div>
       </div>

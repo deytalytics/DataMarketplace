@@ -1,11 +1,11 @@
-from flask import Flask, Response,render_template
+from flask import Flask, Response, request, render_template
 from fetch_restapi_json import fetch_restapi_json
 from fetch_restapi_csv import fetch_restapi_csv
 from fetch_metadata import fetch_metadata
 
 prod_tmp_url='https://data-container.azurewebsites.net/'
 dev_url = 'http://127.0.0.1:8000/'
-url = prod_tmp_url
+url = dev_url
 
 app = Flask(__name__)
 
@@ -24,21 +24,36 @@ def home_page():
 def permitted_data_products():
     return render_template('permitted_data_products.html',url=url,dp_metadata=dp_metadata, ds_metadata=ds_metadata)
 
-@app.route('/continents-0.1')
-def datasets():
-    return render_template('continents-0.1.html',url=url)
+@app.route('/dataset')
+def dataset():
+    args=request.args
+    ds_id=int(args['ds_id'])
+    ds_version_id=int(args['ds_version_id'])
+    for ds in ds_metadata:
+        if (ds['ds_id'] == ds_id and ds['id'] == ds_version_id):
+            found_ds = ds
+            break
+    return render_template('dataset.html',url=url,dataset=found_ds)
 
-@app.route('/continents-0.1.json')
+@app.route('/fetch_json')
 def fetch_json():
     username = "Mary"
     password = "tiger"
-    return fetch_restapi_json(url + 'ds/continents/0.1', username, password)
+    args=request.args
+    ds_name=args['name']
+    ds_version=args['version']
+    json_url=url+"ds/%s/%s"%(ds_name,ds_version)
+    return fetch_restapi_json(json_url, username, password)
 
-@app.route('/continents-0.1.csv')
+@app.route('/fetch_csv')
 def fetch_csv():
     username = "Mary"
     password = "tiger"
-    csv=fetch_restapi_csv(url + 'ds/continents/0.1', username, password)
+    args=request.args
+    ds_name=args['name']
+    ds_version=args['version']
+    csv_url=url+"ds/%s/%s"%(ds_name,ds_version)
+    csv=fetch_restapi_csv(csv_url, username, password)
     return Response(csv,mimetype="text/csv",headers={"Content-disposition":
                  "attachment; filename=continents-0.1.csv"})
 
