@@ -5,7 +5,7 @@ from fetch_metadata import fetch_metadata
 
 prod_tmp_url='https://data-container.azurewebsites.net/'
 dev_url = 'http://127.0.0.1:8000/'
-url = dev_url
+url = prod_tmp_url
 
 app = Flask(__name__)
 
