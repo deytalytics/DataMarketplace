@@ -9,11 +9,14 @@ url = prod_tmp_url
 
 app = Flask(__name__)
 
-query = "select * from data_products dp, dp_docs d where d.dp_id = dp.id"
+query = "select * from data_products dp"
 dp_metadata = fetch_metadata(query)
 
+query = "select ds.name as data_source_name, dsa.name as dsa_name, url_suffix from data_product_data_sources ds, data_source_data_sharing_agreements dsa where dsa.data_source_id=ds.id"
+data_src_metadata = fetch_metadata(query)
+
 query = "select * from target_datasets td, target_dataset_versions tdv where tdv.ds_id = td.id"
-ds_metadata = fetch_metadata(query)
+dataset_metadata = fetch_metadata(query)
 
 
 @app.route('/')
@@ -22,7 +25,7 @@ def home_page():
 
 @app.route('/permitted_data_products')
 def permitted_data_products():
-    return render_template('permitted_data_products.html',url=url,dp_metadata=dp_metadata, ds_metadata=ds_metadata)
+    return render_template('permitted_data_products.html',url=url,dp_metadata=dp_metadata, dataset_metadata=dataset_metadata, data_src_metadata=data_src_metadata)
 
 @app.route('/dataset')
 def dataset():

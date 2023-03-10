@@ -30,7 +30,7 @@
             <div class="p-2">
                 <small>
                     <b>Available Datasets:</b><br>
-                    {% for dataset in ds_metadata %}
+                    {% for dataset in dataset_metadata %}
 
                     <li><a href="/dataset?ds_id={{ dataset.ds_id }}&ds_version_id={{ dataset.id }}">{{ dataset.name }}-{{ dataset.version }}</a></li>
 
@@ -46,14 +46,12 @@
                           <th>Data Source</th>
                           <th>Data Sharing Agreement</th>
                       </tr>
-                      <tr>
-                          <td>Databricks</td>
-                          <td><a href="{{ url }}static/docs/Databricks-Data_Product_PoC_DSA.docx">DSA with Databricks Platform Owner</a></td>
-                      </tr>
-                      <tr>
-                          <td>Kafka</td>
-                          <td><a href="{{ url }}static/docs/Kafka-Data_Product_PoC_DSA.docx">DSA with Kafka Platform Owner</a></td>
-                      </tr>
+                      {% for data_source in data_src_metadata %}
+                          <tr>
+                              <td>{{ data_source.data_source_name }}</td>
+                              <td><a href="{{ url }}{{ data_source.url_suffix }}">{{ data_source.dsa_name }}</a></td>
+                          </tr>
+                      {% endfor %}
                   </table>
             </div>
         </div>
