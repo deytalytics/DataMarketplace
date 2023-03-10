@@ -32,7 +32,7 @@ def dataset():
     args=request.args
     ds_id=int(args['ds_id'])
     ds_version_id=int(args['ds_version_id'])
-    for ds in ds_metadata:
+    for ds in dataset_metadata:
         if (ds['ds_id'] == ds_id and ds['id'] == ds_version_id):
             found_ds = ds
             break
